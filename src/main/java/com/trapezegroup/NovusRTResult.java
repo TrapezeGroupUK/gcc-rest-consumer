@@ -9,7 +9,7 @@ import java.util.List;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class GCCResult {
+public class NovusRTResult {
 
     private String time;
     @JsonProperty("NAPTAN")
@@ -30,7 +30,7 @@ public class GCCResult {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("GCCResult{");
+        final StringBuilder sb = new StringBuilder("NovusRTResult{");
         sb.append("time=").append(time);
         sb.append(", NAPTAN='").append(naptan).append('\'');
         sb.append(", events=").append(events);

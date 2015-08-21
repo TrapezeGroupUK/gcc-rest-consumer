@@ -14,7 +14,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 @Component
-public class GCCConsumer {
+public class NovusRTConsumer {
 
     @Autowired
     private String baseUrl;
@@ -22,7 +22,7 @@ public class GCCConsumer {
     @Autowired
     private String userKey;
 
-    public GCCResult getGCCResult(String stopCode) {
+    public NovusRTResult getNovusRTResult(String stopCode) {
         Assert.hasText(stopCode, "stopCode must not be null.");
         Assert.hasText(baseUrl, "baseUrl must not be null. Ensure that you have set one in Application.java.");
         Assert.hasText(userKey, "userKey must not be null. Ensure that you have set one in Application.java.");
@@ -32,13 +32,13 @@ public class GCCConsumer {
         HttpEntity httpEntity = new HttpEntity(headers);
         RestTemplate restTemplate = new RestTemplate();
 
-        ResponseEntity<GCCResult> gccResultResponse;
+        ResponseEntity<NovusRTResult> novusRTResultResponse;
         try {
             String url = baseUrl + stopCode;
-            gccResultResponse = restTemplate.exchange(new URI(url), HttpMethod.GET, httpEntity, GCCResult.class);
+            novusRTResultResponse = restTemplate.exchange(new URI(url), HttpMethod.GET, httpEntity, NovusRTResult.class);
         } catch (URISyntaxException e) {
-            throw new RuntimeException("Error trying to get GCC result from REST call", e);
+            throw new RuntimeException("Error trying to get NovusRT result from REST call", e);
         }
-        return gccResultResponse.getBody();
+        return novusRTResultResponse.getBody();
     }
 }
