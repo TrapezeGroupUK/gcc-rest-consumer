@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>GCC Stop Data</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/gcc.css}" href="../css/gcc.css" />
+   </head>
+<body>
+<h3>Stop Data</h3>
+<table>
+    <tr><td>Time</td><td th:text="${time}" /></tr>
+    <tr><td>NAPTAN</td><td th:text="${naptan}" /></tr>
+</table>
+<p/>
+<h3>Events</h3>
+<table>
+    <tr>
+        <th>Operator</th>
+        <th>Service</th>
+        <th>Destination</th>
+        <th>Status</th>
+        <th>Arrival Time</th>
+        <th>Departure Time</th>
+    </tr>
+    <tr th:each="stopEvent : ${stopEvents}">
+        <td th:text="${stopEvent.operator}"/>
+        <td th:text="${stopEvent.service}"/>
+        <td th:text="${stopEvent.destination}"/>
+        <td th:text="${stopEvent.status}"/>
+        <td th:text="${stopEvent.arrivalTime}"/>
+        <td th:text="${stopEvent.departureTime}"/>
+    </tr>
+</table>
+</body>
+</html>
