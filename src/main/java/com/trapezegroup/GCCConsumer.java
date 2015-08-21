@@ -23,9 +23,9 @@ public class GCCConsumer {
     private String userKey;
 
     public GCCResult getGCCResult(String stopCode) {
-        Assert.notNull(stopCode, "stopCode must not be null.");
-        Assert.notNull(baseUrl, "baseUrl must not be null. Ensure that you have set one in Application.java.");
-        Assert.notNull(userKey, "userKey must not be null. Ensure that you have set one in Application.java.");
+        Assert.hasText(stopCode, "stopCode must not be null.");
+        Assert.hasText(baseUrl, "baseUrl must not be null. Ensure that you have set one in Application.java.");
+        Assert.hasText(userKey, "userKey must not be null. Ensure that you have set one in Application.java.");
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("user_key", userKey);

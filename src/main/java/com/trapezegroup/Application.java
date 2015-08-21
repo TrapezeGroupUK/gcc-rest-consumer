@@ -15,8 +15,8 @@ public class Application {
 
     @Bean
     public String baseUrl() {
-        return "";
-    } // This should be the baseURL as supplied by Trapeze. Please ensure that URL ends with /
+        return ""; // This should be the baseURL as supplied by Trapeze. Please ensure that URL ends with /
+    }
 
     @Bean
     public String userKey() {
