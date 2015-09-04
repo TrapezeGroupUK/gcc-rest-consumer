@@ -12,16 +12,16 @@ import java.util.List;
 public class NovusRTResult {
 
     private String time;
-    @JsonProperty("NAPTAN")
-    private String naptan;
+    @JsonProperty("AtcoCode")
+    private String atcoCode;
     private List<Event> events;
 
     public String getTime() {
         return time;
     }
 
-    public String getNaptan() {
-        return naptan;
+    public String getAtcoCode() {
+        return atcoCode;
     }
 
     public List<Event> getEvents() {
@@ -32,7 +32,7 @@ public class NovusRTResult {
     public String toString() {
         final StringBuilder sb = new StringBuilder("NovusRTResult{");
         sb.append("time=").append(time);
-        sb.append(", NAPTAN='").append(naptan).append('\'');
+        sb.append(", NAPTAN='").append(atcoCode).append('\'');
         sb.append(", events=").append(events);
         sb.append('}');
         return sb.toString();

@@ -20,7 +20,7 @@ public class NovusRTController {
     public String stopData(@PathVariable("stopCode") String stopCode, HttpServletRequest request, Model model) {
         NovusRTResult novusRTResult = novusRTConsumer.getNovusRTResult(stopCode);
         model.addAttribute("time", novusRTResult.getTime());
-        model.addAttribute("naptan", novusRTResult.getNaptan());
+        model.addAttribute("atcoCode", novusRTResult.getAtcoCode());
         model.addAttribute("stopEvents", novusRTResult.getEvents());
         return "stop_data";
     }
