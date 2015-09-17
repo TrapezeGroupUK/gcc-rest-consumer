@@ -22,6 +22,7 @@ public class NovusRTController {
         model.addAttribute("time", novusRTResult.getTime());
         model.addAttribute("atcoCode", novusRTResult.getAtcoCode());
         model.addAttribute("stopEvents", novusRTResult.getEvents());
+        model.addAttribute("notices", novusRTResult.getNotices());
         return "stop_data";
     }
 }

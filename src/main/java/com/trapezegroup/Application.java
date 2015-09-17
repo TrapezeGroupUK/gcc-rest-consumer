@@ -23,4 +23,14 @@ public class Application {
         return ""; //This should be your user_key supplied by Trapeze
     }
 
+    @Bean
+    public int readTimeoutSecs() {
+        return 30; // read timeout in seconds for the rest service
+    }
+
+    @Bean
+    public int connectTimeoutSecs() {
+        return 30; // connect timeout in seconds for the rest service
+    }
+
 }

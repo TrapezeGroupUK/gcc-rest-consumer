@@ -6,6 +6,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 import org.springframework.web.client.RestTemplate;
@@ -15,7 +16,11 @@ import java.net.URISyntaxException;
 
 @Component
 public class NovusRTConsumer {
+    @Autowired
+    private int readTimeoutSecs;
 
+    @Autowired
+    private int connectTimeoutSecs;
     @Autowired
     private String baseUrl;
 
@@ -30,7 +35,7 @@ public class NovusRTConsumer {
         HttpHeaders headers = new HttpHeaders();
         headers.add("user_key", userKey);
         HttpEntity httpEntity = new HttpEntity(headers);
-        RestTemplate restTemplate = new RestTemplate();
+        RestTemplate restTemplate = getRestTemplate();
 
         ResponseEntity<NovusRTResult> novusRTResultResponse;
         try {
@@ -40,5 +45,12 @@ public class NovusRTConsumer {
             throw new RuntimeException("Error trying to get NovusRT result from REST call", e);
         }
         return novusRTResultResponse.getBody();
+    }
+
+    private RestTemplate getRestTemplate() {
+        RestTemplate restTemplate = new RestTemplate();
+        ((SimpleClientHttpRequestFactory)restTemplate.getRequestFactory()).setConnectTimeout(1000 * connectTimeoutSecs);
+        ((SimpleClientHttpRequestFactory)restTemplate.getRequestFactory()).setReadTimeout(1000 * readTimeoutSecs);
+        return restTemplate;
     }
 }

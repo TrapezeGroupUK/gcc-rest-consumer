@@ -31,5 +31,15 @@
         <td th:text="${stopEvent.localDepartureTime}"/>
     </tr>
 </table>
+<p/>
+<h3>Notices</h3>
+<table th:if="${notices != null and !notices.isEmpty()}">
+    <tr>
+        <th>Notice</th>
+    </tr>
+    <tr th:each="notice : ${notices}">
+        <td th:text="${notice}" />
+    </tr>
+</table>
 </body>
 </html>

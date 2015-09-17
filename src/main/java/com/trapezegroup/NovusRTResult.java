@@ -16,6 +16,8 @@ public class NovusRTResult {
     private String atcoCode;
     private List<Event> events;
 
+    private List<String> notices;
+
     public String getTime() {
         return time;
     }
@@ -28,12 +30,17 @@ public class NovusRTResult {
         return events;
     }
 
+    public List<String> getNotices() {
+        return notices;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("NovusRTResult{");
-        sb.append("time=").append(time);
-        sb.append(", NAPTAN='").append(atcoCode).append('\'');
+        sb.append("time='").append(time).append('\'');
+        sb.append(", atcoCode='").append(atcoCode).append('\'');
         sb.append(", events=").append(events);
+        sb.append(", notices=").append(notices);
         sb.append('}');
         return sb.toString();
     }
