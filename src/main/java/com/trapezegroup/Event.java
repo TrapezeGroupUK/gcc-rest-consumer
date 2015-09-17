@@ -3,6 +3,7 @@ package com.trapezegroup;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.trapezegroup.converter.TimeConverter;
 import lombok.Data;
 
 @Data
@@ -26,6 +27,8 @@ public class Event {
     @JsonProperty("arrival time")
     private String arrivalTime;
 
+    private TimeConverter timeConverter = new TimeConverter();
+
     public String getOperator() {
         return operator;
     }
@@ -48,6 +51,14 @@ public class Event {
 
     public String getDepartureTime() {
         return departureTime;
+    }
+
+    public  String getLocalArrivalTime() {
+        return timeConverter.convert(arrivalTime);
+    }
+
+    public String getLocalDepartureTime() {
+        return timeConverter.convert(departureTime);
     }
 
     @Override
