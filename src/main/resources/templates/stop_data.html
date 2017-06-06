@@ -2,44 +2,48 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Novus-RT Stop Data</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/novus-rt.css}" href="../css/novus-rt.css" />
-   </head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/bootstrap-theme.min.css}"
+          href="../css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/novus-rt.css}" href="../css/novus-rt.css"/>
+</head>
 <body>
-<h3>Stop Data</h3>
-<table>
-    <tr><td>Time</td><td th:text="${time}" /></tr>
-    <tr><td>AtcoCode</td><td th:text="${atcoCode}" /></tr>
-</table>
-<p/>
-<h3>Events</h3>
-<table>
-    <tr>
-        <th>Operator</th>
-        <th>Service</th>
-        <th>Destination</th>
-        <th>Status</th>
-        <th>Arrival Time</th>
-        <th>Departure Time</th>
-    </tr>
-    <tr th:each="stopEvent : ${stopEvents}">
-        <td th:text="${stopEvent.operator}"/>
-        <td th:text="${stopEvent.service}"/>
-        <td th:text="${stopEvent.destination}"/>
-        <td th:text="${stopEvent.status}"/>
-        <td th:text="${stopEvent.localArrivalTime}"/>
-        <td th:text="${stopEvent.localDepartureTime}"/>
-    </tr>
-</table>
-<p/>
-<h3>Notices</h3>
-<table th:if="${notices != null and !notices.isEmpty()}">
-    <tr>
-        <th>Notice</th>
-    </tr>
-    <tr th:each="notice : ${notices}">
-        <td th:text="${notice}" />
-    </tr>
-</table>
+
+<div class="row">
+
+    <div class="col-xs-12">
+        <!-- Header image -->
+        <!--<div class="header">
+            <img src="../viewsmart.jpg"/>
+            <img style="float:right" src="../logos.jpg"/>
+        </div>-->
+
+        <h1>Gloucester Bus Station Departures</h1>
+    </div>
+
+    <div class="departures col-xs-12">
+
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th class="service">Service</th>
+                <th>Destination</th>
+                <th>Bay</th>
+                <th>Due</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="stopEvent, stopEventStat : ${stopEvents}" th:unless="${stopEventStat.index > 7}">
+                <td th:text="${stopEvent.service}"/>
+                <td th:text="${stopEvent.destination}"/>
+                <td th:text="${stopEvent.bay}"></td>
+                <td th:text="${stopEvent.localDepartureTime}"/>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 </body>
 </html>

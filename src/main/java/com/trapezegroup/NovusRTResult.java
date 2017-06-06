@@ -12,7 +12,7 @@ import java.util.List;
 public class NovusRTResult {
 
     private String time;
-    @JsonProperty("AtcoCode")
+    @JsonProperty("atcocode")
     private String atcoCode;
     private List<Event> events;
 

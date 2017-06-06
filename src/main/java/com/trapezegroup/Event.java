@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.trapezegroup.converter.TimeConverter;
 import lombok.Data;
+import org.joda.time.DateTime;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -19,12 +20,13 @@ public class Event {
      */
 
     private String operator;
+    @JsonProperty("publicservicename")
     private String service;
     private String destination;
     private String status;
-    @JsonProperty("departure time")
+    @JsonProperty("departuretime")
     private String departureTime;
-    @JsonProperty("arrival time")
+    @JsonProperty("arrivaltime")
     private String arrivalTime;
 
     private TimeConverter timeConverter = new TimeConverter();
@@ -59,6 +61,16 @@ public class Event {
 
     public String getLocalDepartureTime() {
         return timeConverter.convert(departureTime);
+    }
+
+    public String bay;
+
+    public void setBay(String bay) {
+        this.bay = bay;
+    }
+
+    public DateTime getDepartureTimeAsDateTime() {
+        return timeConverter.convertToDateTime(departureTime);
     }
 
     @Override

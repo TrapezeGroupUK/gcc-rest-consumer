@@ -27,13 +27,13 @@ public class NovusRTConsumer {
     @Autowired
     private String userKey;
 
-    public NovusRTResult getNovusRTResult(String stopCode) {
+    public NovusRTResult getNovusRTResult(String stopCode, String bay) {
         Assert.hasText(stopCode, "stopCode must not be null.");
         Assert.hasText(baseUrl, "baseUrl must not be null. Ensure that you have set one in Application.java.");
-        Assert.hasText(userKey, "userKey must not be null. Ensure that you have set one in Application.java.");
+        //Assert.hasText(userKey, "userKey must not be null. Ensure that you have set one in Application.java.");
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("user_key", userKey);
+        //headers.add("user_key", userKey);
         HttpEntity httpEntity = new HttpEntity(headers);
         RestTemplate restTemplate = getRestTemplate();
 
@@ -44,7 +44,16 @@ public class NovusRTConsumer {
         } catch (URISyntaxException e) {
             throw new RuntimeException("Error trying to get NovusRT result from REST call", e);
         }
-        return novusRTResultResponse.getBody();
+        NovusRTResult result = novusRTResultResponse.getBody();
+
+        // Append bay information
+        // [This is a bit of a hack as the Open API doesnt current return this information]
+        if (result.getEvents() != null) {
+            for (Event event : result.getEvents()) {
+                event.setBay(bay);
+            }
+        }
+        return result;
     }
 
     private RestTemplate getRestTemplate() {
