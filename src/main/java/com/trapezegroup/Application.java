@@ -19,7 +19,7 @@ public class Application {
 
     @Bean
     public String baseUrl() {
-        return "http://trp-slo-glocs0:9090/StopEvents?Atcocode="; // This should be the baseURL as supplied by Trapeze. Please ensure that URL ends with /
+        return "http://trp-slo-glocs0:9090/StopEvents?events=departures&Atcocode="; // This should be the baseURL as supplied by Trapeze. Please ensure that URL ends with /
     }
 
     @Bean
